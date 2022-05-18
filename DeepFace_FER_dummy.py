@@ -24,13 +24,12 @@ face_cascade = cv2.CascadeClassifier(r'C:\Users\User\Desktop\haarcascade_frontal
 for file in os.listdir(r"C:\Users\User\Downloads\Test_vid_May17"):
     if file.endswith(".mp4"):
         path=os.path.join(r"C:\Users\User\Downloads\Test_vid_May17", file)
-        points=0
-        emo_dict={'worry':0,'happy':0,'neutral':0,'sad':0,'surprise':0,'confident':0,'nervous':0}
+        
         cap = cv2.VideoCapture(path)
         
         time=1
         fps = cap.get(cv2.CAP_PROP_FPS) 
-        cap.set(5,100)# OpenCV2 version 2 used "CV_CAP_PROP_FPS"
+        cap.set(5,100)
         frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
         
         while(1):
@@ -44,7 +43,7 @@ for file in os.listdir(r"C:\Users\User\Downloads\Test_vid_May17"):
             
                 break
 
-            #faces = face_cascade.detectMultiScale(frame,scaleFactor = 1.3, minNeighbors = 4 )
+            
             output = DeepFace.analyze(frame, enforce_detection=False, actions=['emotion','dominant_emotion'] )
             #print(output)
             
